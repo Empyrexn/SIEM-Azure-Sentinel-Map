@@ -1,0 +1,41 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "FAILED_RDP_WITH_GEO_CL\r\n| extend username = extract(@\"username:([^,]+)\", 1, RawData),\r\n         timestamp = extract(@\"timestamp:([^,]+)\", 1, RawData),\r\n         latitude = extract(@\"latitude:([^,]+)\", 1, RawData),\r\n         longitude = extract(@\"longitude:([^,]+)\", 1, RawData),\r\n         sourcehost = extract(@\"sourcehost:([^,]+)\", 1, RawData),\r\n         state = extract(@\"state:([^,]+)\", 1, RawData),\r\n         label = extract(@\"label:([^,]+)\", 1, RawData),\r\n         destination = extract(@\"destinationhost:([^,]+)\", 1, RawData),\r\n         country = extract(@\"country:([^,]+)\", 1, RawData)\r\n| where destination != \"samplehost\"\r\n| where sourcehost != \"\"\r\n| summarize event_count=count() by latitude, longitude, sourcehost, label, destination, country",
+        "size": 3,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "visualization": "map",
+        "mapSettings": {
+          "locInfo": "LatLong",
+          "latitude": "latitude",
+          "longitude": "longitude",
+          "sizeSettings": "latitude",
+          "sizeAggregation": "Sum",
+          "labelSettings": "label",
+          "legendMetric": "event_count",
+          "legendAggregation": "Sum",
+          "itemColorSettings": {
+            "nodeColorField": "latitude",
+            "colorAggregation": "Sum",
+            "type": "heatmap",
+            "heatmapPalette": "greenRed"
+          }
+        }
+      },
+      "name": "query - 0"
+    }
+  ],
+  "fallbackResourceIds": [
+    "/subscriptions/23355339-36f7-44e7-af07-5a23a5038e0d/resourcegroups/honeypotlab/providers/microsoft.operationalinsights/workspaces/law-honeypot1"
+  ],
+  "fromTemplateId": "sentinel-UserWorkbook",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
