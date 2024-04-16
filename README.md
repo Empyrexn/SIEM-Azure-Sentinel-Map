@@ -1,1 +1,1 @@
-![image](https://github.com/Empyrexn/SIEM-Azure-Sentinel-Map/assets/142949114/40b233fa-1485-4c17-a841-73075a207d1c)
+![image](https://github.com/Empyrexn/SIEM-Azure-Sentinel-Map/assets/142949114/156ac037-79f2-4847-9233-5c483eb827b3)
